@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    
+    tools:context=".DataPassActivity" >
+
+    <TextView
+        android:id="@+id/data_pass_text1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:background="#0000FF"
+        android:text="@string/hello_world" />
+    <Button
+        android:id="@+id/button_pop_self"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="popupself"
+        android:layout_below="@id/data_pass_text1"
+        ></Button>
+     <Button
+          android:id="@+id/button_pop_to_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="popuptohome"
+        android:layout_below="@id/button_pop_self"
+        ></Button>
+
+</RelativeLayout>

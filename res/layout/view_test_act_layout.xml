@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <Button
+        android:id="@+id/test_view_button"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:text="点击按钮" >
+    </Button>
+	<!--ScrollView 里面只能放一个view或者linearlayout  -->
+    <ScrollView
+        android:id="@+id/test_view_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/test_view_button"
+        android:padding="3dp"
+        android:scrollbars="vertical" >
+
+        <EditText
+            android:id="@+id/test_view_edit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="top" >
+        </EditText>
+    </ScrollView>
+
+    <GridView
+        android:id="@+id/test_view_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/test_view_scroll"
+        android:gravity="center"
+        android:numColumns="4" >
+    </GridView>
+
+</RelativeLayout>
