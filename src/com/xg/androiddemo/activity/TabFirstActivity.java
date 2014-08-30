@@ -36,6 +36,8 @@ public class TabFirstActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tab_first_layout);
 		initmore();
+		
+	
 	}
 
 	@Override
