@@ -85,7 +85,7 @@ public class ListViewDemoActivity extends BaseActivity implements SubMenuOnClick
 				  
 				 adapter.notifyDataSetChanged();
 				 
-				  setTitle("点击第"+index+"个项目");  
+				  setTitle("demo"+index+"4231423");
 	            }
 		
 		}

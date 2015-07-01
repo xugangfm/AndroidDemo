@@ -5,9 +5,9 @@ import java.util.HashMap;
 
 import com.xg.androiddemo.R;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+//import android.app.Activity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -21,8 +21,9 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
+import android.support.v4.app.FragmentActivity;
 
-public class HomeFragmentActivity extends Activity {
+public class HomeFragmentActivity extends FragmentActivity {
 
 	private FragmentManager fragmentManager;  
 	private int selected_index=0;
@@ -47,7 +48,7 @@ public class HomeFragmentActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		 fragmentManager = getFragmentManager(); 
+		 fragmentManager = getSupportFragmentManager();
 		
 		Log.v("main task id", ":"+getTaskId());
 		
@@ -108,12 +109,12 @@ public class HomeFragmentActivity extends Activity {
 		String tag = "";
 		if (selected == 0) {
 			TabFirstFragment temp = new TabFirstFragment();
-			FragmentTransaction transaction = getFragmentManager().beginTransaction();
+			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 			transaction.replace(R.id.home_content_view, temp);
 			transaction.commit();
 		} else if (selected == 1) {
 			TabSecondFragment temp = new TabSecondFragment();
-			FragmentTransaction transaction = getFragmentManager().beginTransaction();
+			FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 			transaction.replace(R.id.home_content_view, temp);
 			transaction.commit();
 			

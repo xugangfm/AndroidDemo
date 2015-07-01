@@ -30,11 +30,13 @@ import android.widget.ListView;
 import com.xg.androiddemo.R;
 import com.xg.androiddemo.parent.BaseActivity;
 
-public class HandleTestActivity extends BaseActivity {
+public class HandleTestActivity extends BaseActivity implements Handler.Callback {
 
 	public HandleTestActivity() {
 		// TODO Auto-generated constructor stub
 	}
+
+    private Handler mHandler;
 
 	private Handler handler=new Handler(){
 
@@ -64,15 +66,35 @@ public class HandleTestActivity extends BaseActivity {
 		
 		
 	};
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.xg.androiddemo.parent.BaseActivity#onCreate(android.os.Bundle)
-	 */
+
+    @Override
+    public boolean handleMessage(Message message) {
+        Bundle data=message.getData();
+
+        Bitmap bitmap =data.getParcelable("bitmap");
+
+        ImageView imageView=new ImageView(HandleTestActivity.this);
+        imageView.setImageBitmap(bitmap);
+
+        new AlertDialog.Builder(HandleTestActivity.this)
+                .setTitle("image")
+                .setView(imageView)
+                .setPositiveButton("OK", null)
+                .show();
+
+        return false;
+    }
+
+    /*
+         * (non-Javadoc)
+         *
+         * @see com.xg.androiddemo.parent.BaseActivity#onCreate(android.os.Bundle)
+         */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+        mHandler = new Handler(this);
 
 		ListView lv = new ListView(this);
 
@@ -104,11 +126,11 @@ public class HandleTestActivity extends BaseActivity {
 				
 				
 				if (index == 0) {
-					download();
+					downloadByThread();
 				}
 				
 				if(index ==1){
-					download2();
+					downloadByRunnable();
 				}
 				
 				if (index==2) {
@@ -135,33 +157,9 @@ public class HandleTestActivity extends BaseActivity {
 
 	}
 	
-	private void download2(){
-		Runnable runable=new Runnable() {
-			
-			@Override
-			public void run() {
-				// TODO Auto-generated method stub
-				String urlString="http://img5.hao123.com/data/1_d1be20c5f759160fc48b3395d9579edc_0";				
-				//Bitmap bitmap=getBitmapFromUrl(urlString);
-				Bitmap bitmap=getBitmapWithHttpClient(urlString);
-				Message msg=handler.obtainMessage();
-				msg.what=1;
-				Bundle bundle=new Bundle();
-				bundle.putParcelable("bitmap", bitmap);
-				msg.setData(bundle);
-				
-				//handler.post(r)
-				//handler.sendMessage(msg);
-				msg.setTarget(handler);
-				msg.sendToTarget();
-			
-			}
-		};
-		
-		new Thread(runable).start();
-	}
+
 	
-	private void download(){
+	private void downloadByThread(){
 		
 		new Thread(){
 
@@ -175,19 +173,43 @@ public class HandleTestActivity extends BaseActivity {
 				String urlString="http://img5.hao123.com/data/1_d1be20c5f759160fc48b3395d9579edc_0";				
 				//Bitmap bitmap=getBitmapFromUrl(urlString);
 				Bitmap bitmap=getBitmapWithHttpClient(urlString);
-				Message msg=handler.obtainMessage();
+				Message msg=mHandler.obtainMessage();
 				Bundle bundle=new Bundle();
 				bundle.putParcelable("bitmap", bitmap);
 				msg.setData(bundle);
 				
 				//handler.post(r)
-				handler.sendMessage(msg);
+                mHandler.sendMessage(msg);
 				
 			}
 			
 		}.start();
 	}
-	
+    private void downloadByRunnable(){
+        Runnable runable=new Runnable() {
+
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                String urlString="http://img5.hao123.com/data/1_d1be20c5f759160fc48b3395d9579edc_0";
+                //Bitmap bitmap=getBitmapFromUrl(urlString);
+                Bitmap bitmap=getBitmapWithHttpClient(urlString);
+                Message msg=handler.obtainMessage();
+                msg.what=1;
+                Bundle bundle=new Bundle();
+                bundle.putParcelable("bitmap", bitmap);
+                msg.setData(bundle);
+
+                //handler.post(r)
+                //handler.sendMessage(msg);
+                msg.setTarget(handler);
+                msg.sendToTarget();
+
+            }
+        };
+
+        new Thread(runable).start();
+    }
 	private  Bitmap getBitmapFromUrl(String imgUrl) {
 		URL myFileUrl = null;
 		Bitmap bitmap = null;
@@ -229,9 +251,7 @@ public class HandleTestActivity extends BaseActivity {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-		
-		
-		
+
 		return bitmap;
 	}
 

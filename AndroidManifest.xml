@@ -11,7 +11,7 @@
     </uses-permission>
 
     <uses-sdk
-        android:minSdkVersion="16"
+        android:minSdkVersion="8"
         android:targetSdkVersion="16" />
 
     <application
@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.xg.androiddemo.activity.HomeFragmentActivity"
+            android:name="com.xg.androiddemo.activity.HomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
