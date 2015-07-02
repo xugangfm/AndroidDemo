@@ -36,7 +36,7 @@ public class ReceiverTestActivity extends BaseActivity {
 		registerBoradcastReceiver();
 		
 		Button btn = new Button(this);
-		btn.setText("send broardcast");
+		btn.setText("send broardcast 静态注册广播");
 		btn.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -47,9 +47,23 @@ public class ReceiverTestActivity extends BaseActivity {
 				Log.i("ReceiverTestActivity", "finish send");
 			}
 		});
-		
-		
-		Button btn2 = new Button(this);
+
+        Button btn3 = new Button(this);
+        btn3.setText("send broardcast 动态注册广播");
+        btn3.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent it = new Intent("com.xg.receiver_dy_demo");
+                sendBroadcast(it);
+                Log.i("ReceiverTestActivity", "finish send dy 广播");
+            }
+        });
+
+
+
+        Button btn2 = new Button(this);
 		btn2.setText("send broardcast 静态内部类");
 		btn2.setOnClickListener(new View.OnClickListener() {
 
@@ -66,6 +80,7 @@ public class ReceiverTestActivity extends BaseActivity {
 		LinearLayout layout = new LinearLayout(this);
 		layout.setOrientation(LinearLayout.VERTICAL);
 		layout.addView(btn);
+        layout.addView(btn3);
 		layout.addView(btn2);
 		setContentView(layout);
 	}
@@ -73,7 +88,7 @@ public class ReceiverTestActivity extends BaseActivity {
 	
 	private  void registerBoradcastReceiver(){ 
         IntentFilter myIntentFilter = new IntentFilter(); 
-        myIntentFilter.addAction("com.xg.receiver_demo"); 
+        myIntentFilter.addAction("com.xg.receiver_dy_demo");
         //注册广播       
         registerReceiver(receiver, myIntentFilter); 
        

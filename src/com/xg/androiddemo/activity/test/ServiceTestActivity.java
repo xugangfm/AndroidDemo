@@ -55,6 +55,7 @@ public class ServiceTestActivity extends BaseActivity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent it = new Intent("com.xg.SERVICE_DEMO");
+
 				
 			}
 		});
