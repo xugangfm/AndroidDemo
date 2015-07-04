@@ -43,6 +43,9 @@ public class HomeActivity extends ActivityGroup {
 			// TODO Auto-generated method stub
 			
 			Log.i("StaticReceiver", "静态内部类广播");
+
+            //HomeActivity.this.switchActivity(3);
+
 		}
 		
 		
