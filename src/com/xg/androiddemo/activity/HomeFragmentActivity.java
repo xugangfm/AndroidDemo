@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.xg.androiddemo.R;
+import com.xg.androiddemo.activity.test.DownloadImageActivity;
+import com.xg.androiddemo.activity.test.HandleTestActivity;
+import com.xg.androiddemo.activity.test.LayoutTestActivity;
+import com.xg.androiddemo.activity.test.ListViewDemoActivity;
+import com.xg.androiddemo.activity.test.ReceiverTestActivity;
+import com.xg.androiddemo.activity.test.ServiceTestActivity;
+import com.xg.androiddemo.parent.BaseActivity;
 
 //import android.app.Activity;
 import android.support.v4.app.FragmentManager;
@@ -23,7 +30,7 @@ import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
 import android.support.v4.app.FragmentActivity;
 
-public class HomeFragmentActivity extends FragmentActivity {
+public class HomeFragmentActivity extends BaseActivity implements TabFirstFragment.TabFirstFragmentClickListener {
 
 	private FragmentManager fragmentManager;  
 	private int selected_index=0;
@@ -43,6 +50,46 @@ public class HomeFragmentActivity extends FragmentActivity {
 		
 		
 	}
+
+	public  void onclicked(int resId,int index){
+
+		if (resId == R.id.first_act_button1){
+			Bundle data = new Bundle();
+			pushActivity(HomeFragmentActivity.this, data,
+					ListViewDemoActivity.class);
+		}
+
+		if (resId == R.id.first_act_button2){
+			Bundle data = new Bundle();
+			pushActivity(HomeFragmentActivity.this, null,
+					LayoutTestActivity.class);
+		}
+
+		if (resId == R.id.first_act_listview){
+
+			if (index==0) {
+				pushActivity(HomeFragmentActivity.this, null, DownloadImageActivity.class);
+			}
+			if (index==1) {
+				pushActivity(HomeFragmentActivity.this, null, ServiceTestActivity.class);
+			}
+
+			if (index==2) {
+				//postNotification();
+			}
+
+			if (index==3) {
+				pushActivity(HomeFragmentActivity.this, null, ReceiverTestActivity.class);
+			}
+
+			if (index==4) {
+				pushActivity(HomeFragmentActivity.this, null, HandleTestActivity.class);
+			}
+		}
+
+
+	}
+
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

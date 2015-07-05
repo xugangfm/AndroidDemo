@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
-public class BaseActivity extends Activity {
+public class BaseActivity extends FragmentActivity {
 
 	/* (non-Javadoc)
 	 * @see android.app.Activity#onCreate(android.os.Bundle)
@@ -34,7 +35,7 @@ public class BaseActivity extends Activity {
 		super.onResume();
 	}
 
-	protected void pushActivity(Activity currentActivity,Bundle bundle,Class willActivityClass){
+	public void pushActivity(Activity currentActivity,Bundle bundle,Class willActivityClass){
 		Intent intent=new Intent(currentActivity, willActivityClass);
 		intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 		if (null==bundle) {
@@ -44,13 +45,13 @@ public class BaseActivity extends Activity {
 		currentActivity.startActivity(intent);
 		
 	}
-	
-	protected void popActivity(Activity currentActivity){
+
+	public void popActivity(Activity currentActivity){
 		currentActivity.finish();
 		
 	}
-	
-	protected void popToActivity(Activity currentActivity,Class willActivityClass){
+
+	public void popToActivity(Activity currentActivity,Class willActivityClass){
 		Intent intent=new Intent(currentActivity, willActivityClass);
 		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		currentActivity.startActivity(intent);
