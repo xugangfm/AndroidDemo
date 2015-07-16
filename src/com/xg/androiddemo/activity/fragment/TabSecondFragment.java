@@ -1,4 +1,4 @@
-package com.xg.androiddemo.activity;
+package com.xg.androiddemo.activity.fragment;
 
 import com.xg.androiddemo.R;
 

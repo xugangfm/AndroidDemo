@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.xg.androiddemo.R;
+import com.xg.androiddemo.activity.fragment.TabFirstFragment;
+import com.xg.androiddemo.activity.fragment.TabSecondFragment;
 import com.xg.androiddemo.activity.test.DownloadImageActivity;
 import com.xg.androiddemo.activity.test.HandleTestActivity;
 import com.xg.androiddemo.activity.test.LayoutTestActivity;
@@ -23,13 +25,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
 import android.widget.AdapterView.OnItemClickListener;
-import android.support.v4.app.FragmentActivity;
 
 public class HomeFragmentActivity extends BaseActivity implements TabFirstFragment.TabFirstFragmentClickListener {
 

@@ -34,6 +34,21 @@ public class BaseActivity extends ActionBarActivity {
 		super.onResume();
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+	}
+
+	@Override
+	protected void onStop() {
+		super.onStop();
+	}
+
 	public void pushActivity(Activity currentActivity,Bundle bundle,Class willActivityClass){
 		Intent intent=new Intent(currentActivity, willActivityClass);
 		intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
