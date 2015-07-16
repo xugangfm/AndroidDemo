@@ -13,6 +13,7 @@ import com.xg.androiddemo.activity.test.ServiceTestActivity;
 import com.xg.androiddemo.parent.BaseActivity;
 
 //import android.app.Activity;
+import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
@@ -98,8 +99,11 @@ public class HomeFragmentActivity extends BaseActivity implements TabFirstFragme
 		 fragmentManager = getSupportFragmentManager();
 		
 		Log.v("main task id", ":"+getTaskId());
-		
-		
+
+		Uri uri = Uri.parse("demo://" + getApplicationInfo().packageName).buildUpon().appendPath("conversationSetting")
+				.appendPath("group").appendQueryParameter("targetId", "4242342").build();
+
+		Log.e("Uri",uri.toString());
 		
 		setContentView(R.layout.home_act_layout);
 		contentView = (LinearLayout) findViewById(R.id.home_content_view);
