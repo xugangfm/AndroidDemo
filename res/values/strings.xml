@@ -9,5 +9,8 @@
     <string name="title_activity_tab_third">TabThirdActivity</string>
     <string name="title_activity_tab_fouth">TabFouthActivity</string>
     <string name="title_activity_data_pass">DataPassActivity</string>
+    <string name="title_activity_actionbar_test">ActionbarTestActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_list_action_bar_test">ListActionBarTestActivity</string>
 
 </resources>

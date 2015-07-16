@@ -102,6 +102,10 @@ public class TabFirstFragment extends Fragment {
         arrayList.add("post notification");
         arrayList.add("try broardcast activity");
         arrayList.add("try handle with thread");
+        arrayList.add("Test Tab ActionBar Activity");
+        arrayList.add("Test List ActionBar Activity");
+
+
 
 
         ArrayAdapter<String> adapter=new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, arrayList);
@@ -133,6 +137,14 @@ public class TabFirstFragment extends Fragment {
                 }
 
                 if (index == 4) {
+                    mListener.onclicked(R.id.first_act_listview,index);
+                }
+
+                if (index == 5) {
+                    mListener.onclicked(R.id.first_act_listview,index);
+                }
+
+                if (index == 6) {
                     mListener.onclicked(R.id.first_act_listview,index);
                 }
 

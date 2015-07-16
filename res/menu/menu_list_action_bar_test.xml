@@ -1,0 +1,51 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.xg.androiddemo.activity.test.ListActionBarTestActivity">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="always" >
+        <menu>
+            <item
+                android:id="@+id/save"
+                android:icon="@drawable/ic_launcher"
+                android:orderInCategory="4"
+                app:showAsAction="ifRoom|withText"
+                android:title="item2"/>
+            <item
+                android:id="@+id/item8"
+                android:icon="@drawable/ic_launcher"
+                android:orderInCategory="5"
+                app:showAsAction="ifRoom|withText"
+                android:title="item3"/>
+            <item
+                android:id="@+id/item9"
+                android:icon="@drawable/ic_launcher"
+                android:orderInCategory="6"
+                app:showAsAction="ifRoom|withText"
+                android:title="item4"/>
+        </menu>
+    </item>
+    <item android:id="@+id/action_custom" android:title="custom"
+        android:orderInCategory="100" app:showAsAction="always" >
+        <menu>
+            <item
+                android:id="@+id/savec"
+                android:icon="@drawable/ic_launcher"
+                android:orderInCategory="4"
+                app:showAsAction="ifRoom|withText"
+                android:title="item2"/>
+            <item
+                android:id="@+id/item8c"
+                android:icon="@drawable/ic_launcher"
+                android:orderInCategory="5"
+                app:showAsAction="ifRoom|withText"
+                android:title="item3"/>
+            <item
+                android:id="@+id/item9c"
+                android:icon="@drawable/ic_launcher"
+                android:orderInCategory="6"
+                app:showAsAction="ifRoom|withText"
+                android:title="item4"/>
+        </menu>
+    </item>
+</menu>

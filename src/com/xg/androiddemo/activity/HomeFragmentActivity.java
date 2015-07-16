@@ -6,6 +6,8 @@ import java.util.HashMap;
 import com.xg.androiddemo.R;
 import com.xg.androiddemo.activity.fragment.TabFirstFragment;
 import com.xg.androiddemo.activity.fragment.TabSecondFragment;
+import com.xg.androiddemo.activity.test.ListActionBarTestActivity;
+import com.xg.androiddemo.activity.test.TabActionbarTestActivity;
 import com.xg.androiddemo.activity.test.DownloadImageActivity;
 import com.xg.androiddemo.activity.test.HandleTestActivity;
 import com.xg.androiddemo.activity.test.LayoutTestActivity;
@@ -85,6 +87,12 @@ public class HomeFragmentActivity extends BaseActivity implements TabFirstFragme
 
 			if (index==4) {
 				pushActivity(HomeFragmentActivity.this, null, HandleTestActivity.class);
+			}
+			if (index==5) {
+				pushActivity(HomeFragmentActivity.this, null, TabActionbarTestActivity.class);
+			}
+			if (index==6) {
+				pushActivity(HomeFragmentActivity.this, null, ListActionBarTestActivity.class);
 			}
 		}
 
