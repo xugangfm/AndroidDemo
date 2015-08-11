@@ -62,7 +62,7 @@
         <activity android:name=".activity.test2.ScrollViewActivity" />
         <activity android:name=".activity.test2.ListViewHFActivity" />
         <!-- 服务 -->
-        <service android:name=".service.CustomService" >
+        <service android:name=".service.CustomService"  >
             <intent-filter>
                 <action android:name="com.xg.SERVICE_DEMO" />
 

@@ -6,8 +6,12 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
+import android.content.ServiceConnection;
+import android.content.ComponentName;
 
 public class CustomService extends Service {
 
@@ -31,9 +35,19 @@ public class CustomService extends Service {
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
 		Log.i("CustomService", "onBind");
-		return null;
+		return new LocalBinder();
 	}
 
+	public class LocalBinder extends Binder {
+		public CustomService getService() {
+			// Return this instance of LocalService so clients can call public methods
+			return CustomService.this;
+		}
+	}
+
+	public void sayHelloWorld(){
+		Toast.makeText(this.getApplicationContext(), "Hello World Local Service!", Toast.LENGTH_SHORT).show();
+	}
 	/* (non-Javadoc)
 	 * @see android.app.Service#onDestroy()
 	 */
@@ -44,15 +58,23 @@ public class CustomService extends Service {
 		super.onDestroy();
 	}
 
+	@Override
+	public int onStartCommand(Intent intent, int flags, int startId) {
+		return super.onStartCommand(intent, flags, startId);
+	}
+
 	/* (non-Javadoc)
-	 * @see android.app.Service#onRebind(android.content.Intent)
-	 */
+         * @see android.app.Service#onRebind(android.content.Intent)
+         */
 	@Override
 	public void onRebind(Intent intent) {
 		// TODO Auto-generated method stub
 		Log.i("CustomService", "onRebind");
 		super.onRebind(intent);
 	}
+
+
+
 
 	/* (non-Javadoc)
 	 * @see android.app.Service#onStart(android.content.Intent, int)
