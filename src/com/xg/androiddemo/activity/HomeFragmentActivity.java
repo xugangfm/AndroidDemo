@@ -1,37 +1,38 @@
 package com.xg.androiddemo.activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import com.xg.androiddemo.R;
-import com.xg.androiddemo.activity.fragment.TabFirstFragment;
-import com.xg.androiddemo.activity.fragment.TabSecondFragment;
-import com.xg.androiddemo.activity.test.ListActionBarTestActivity;
-import com.xg.androiddemo.activity.test.TabActionbarTestActivity;
-import com.xg.androiddemo.activity.test.DownloadImageActivity;
-import com.xg.androiddemo.activity.test.HandleTestActivity;
-import com.xg.androiddemo.activity.test.LayoutTestActivity;
-import com.xg.androiddemo.activity.test.ListViewDemoActivity;
-import com.xg.androiddemo.activity.test.ReceiverTestActivity;
-import com.xg.androiddemo.activity.test.ServiceTestActivity;
-import com.xg.androiddemo.parent.BaseActivity;
-
-//import android.app.Activity;
-import android.net.Uri;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.xg.androiddemo.R;
+import com.xg.androiddemo.activity.fragment.TabFirstFragment;
+import com.xg.androiddemo.activity.fragment.TabSecondFragment;
+import com.xg.androiddemo.activity.test.DownloadImageActivity;
+import com.xg.androiddemo.activity.test.HandleTestActivity;
+import com.xg.androiddemo.activity.test.LayoutTestActivity;
+import com.xg.androiddemo.activity.test.ListActionBarTestActivity;
+import com.xg.androiddemo.activity.test.ListViewDemoActivity;
+import com.xg.androiddemo.activity.test.ReceiverTestActivity;
+import com.xg.androiddemo.activity.test.ServiceTestActivity;
+import com.xg.androiddemo.activity.test.TabActionbarTestActivity;
+import com.xg.androiddemo.parent.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+//import android.app.Activity;
 
 public class HomeFragmentActivity extends BaseActivity implements TabFirstFragment.TabFirstFragmentClickListener {
 
@@ -117,6 +118,13 @@ public class HomeFragmentActivity extends BaseActivity implements TabFirstFragme
 		contentView = (LinearLayout) findViewById(R.id.home_content_view);
 		intTabBar();
 		switchActivity(selected_index);
+
+		String host=android.net.Proxy.getDefaultHost();//通过andorid.net.Proxy可以获取默认的代理地址
+		int port =android.net.Proxy.getDefaultPort();//通过andorid.net.Proxy可以获取默认的代理端口
+
+		String host1=android.net.Proxy.getHost(getApplicationContext());//通过andorid.net.Proxy可以获取默认的代理地址
+		int port1 =android.net.Proxy.getPort(getApplicationContext());//通过andorid.net.Proxy可以获取默认的代理端口
+
 	}
 		
 	

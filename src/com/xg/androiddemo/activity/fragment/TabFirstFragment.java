@@ -1,17 +1,9 @@
 package com.xg.androiddemo.activity.fragment;
 
 
-import com.xg.androiddemo.R;
-import com.xg.androiddemo.activity.test.DownloadImageActivity;
-import com.xg.androiddemo.activity.test.HandleTestActivity;
-import com.xg.androiddemo.activity.test.LayoutTestActivity;
-import com.xg.androiddemo.activity.test.ListViewDemoActivity;
-import com.xg.androiddemo.activity.test.ReceiverTestActivity;
-import com.xg.androiddemo.activity.test.ServiceTestActivity;
-import com.xg.androiddemo.parent.BaseActivity;
 import android.app.Activity;
-
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +11,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.support.v4.app.Fragment;
 import android.widget.ListView;
+
+import com.xg.androiddemo.R;
 
 import java.util.ArrayList;
 
@@ -104,6 +97,7 @@ public class TabFirstFragment extends Fragment {
         arrayList.add("try handle with thread");
         arrayList.add("Test Tab ActionBar Activity");
         arrayList.add("Test List ActionBar Activity");
+        //arrayList.add("Test unknown Activity");
 
 
 
