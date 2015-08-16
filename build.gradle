@@ -1,11 +1,19 @@
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:1.1.0'
     }
 }
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+
 apply plugin: 'com.android.application'
 
 
@@ -39,11 +47,17 @@ android {
     }
 
     lintOptions {
+        // set to true to turn off analysis progress reporting by lint
+        quiet true
+        // if true, stop the gradle build if errors are found
         abortOnError false
+        // if true, only report errors
+        ignoreWarnings true
     }
 
     buildTypes {
         debug {
+            debuggable true
             minifyEnabled false
         }
         release {

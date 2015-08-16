@@ -56,6 +56,7 @@ public class BaseActivity extends ActionBarActivity {
 			bundle=new Bundle();
 		}
 		intent.putExtras(bundle);
+
 		currentActivity.startActivity(intent);
 		
 	}

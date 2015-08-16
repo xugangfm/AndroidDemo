@@ -26,7 +26,7 @@ public class ListActionBarTestActivity extends ActionBarActivity implements Acti
         actionBar.setIcon(R.drawable.de_title_back);
 
         String[] str = { "1", "2", "3", "4", "5" };
-        actionBar.setTitle("列表");
+        actionBar.setTitle("列表菜单");
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
         actionBar.setListNavigationCallbacks(new ArrayAdapter<String>(
                         ListActionBarTestActivity.this,
