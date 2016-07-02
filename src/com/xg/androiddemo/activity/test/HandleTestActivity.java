@@ -1,5 +1,27 @@
 package com.xg.androiddemo.activity.test;
 
+import android.app.AlertDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+
+import com.xg.androiddemo.event.ImageDownloadEvent;
+import com.xg.androiddemo.parent.BaseActivity;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -8,27 +30,7 @@ import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import android.app.AlertDialog;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-
-import com.xg.androiddemo.R;
-import com.xg.androiddemo.parent.BaseActivity;
+import de.greenrobot.event.EventBus;
 
 public class HandleTestActivity extends BaseActivity implements Handler.Callback {
 
@@ -96,6 +98,10 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 		super.onCreate(savedInstanceState);
         mHandler = new Handler(this);
 
+        EventBus.getDefault().register(this);
+
+        //eventBus.register(this);
+
 		ListView lv = new ListView(this);
 
 		ArrayList<String> arrayList = new ArrayList<String>();
@@ -104,6 +110,8 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 		arrayList.add("Download image with runnable");
 		
 		arrayList.add("handle post runnable");
+
+		arrayList.add("eventbus");
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, arrayList);
@@ -132,15 +140,20 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 				if(index ==1){
 					downloadByRunnable();
 				}
+
+                if(index == 3){
+                    downloadByThread_eventbus();
+                }
 				
 				if (index==2) {
+                    Log.d("click post", "run:pid "+Thread.currentThread().getId());
 					
 					handler.post(new Runnable() {
 						
 						@Override
 						public void run() {
 							// TODO Auto-generated method stub
-							
+                            Log.d("act post", "run:pid "+Thread.currentThread().getId());
 							new AlertDialog.Builder(HandleTestActivity.this)
 							.setTitle("handle post")
 							.setMessage("post runnable")
@@ -255,4 +268,103 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 		return bitmap;
 	}
 
+    private void downloadByThread_eventbus(){
+
+        new Thread(){
+
+            /* (non-Javadoc)
+             * @see java.lang.Thread#run()
+             */
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+
+                String urlString="http://img5.hao123.com/data/1_d1be20c5f759160fc48b3395d9579edc_0";
+                //Bitmap bitmap=getBitmapFromUrl(urlString);
+                Bitmap bitmap=getBitmapWithHttpClient(urlString);
+                ImageDownloadEvent ev= new ImageDownloadEvent();
+                ev.uri = urlString;
+				ev.bitmap = bitmap;
+                EventBus.getDefault().post(ev);
+
+                Log.d("postevent", "run:pid "+Thread.currentThread().getId());
+//                Message msg=mHandler.obtainMessage();
+//                Bundle bundle=new Bundle();
+//                bundle.putParcelable("bitmap", bitmap);
+//                msg.setData(bundle);
+//
+//                //handler.post(r)
+//                mHandler.sendMessage(msg);
+
+            }
+
+        }.start();
+    }
+
+   // @Subscribe
+    public void onEvent(ImageDownloadEvent event){
+
+        Log.e("onEvent", "onEvent: "+event.uri);
+        Log.d("onevent", "run: pid "+Thread.currentThread().getId());
+
+//		handler.post(new Runnable() {
+//
+//			@Override
+//			public void run() {
+//				// TODO Auto-generated method stub
+//				Log.d("act post", "run:pid "+Thread.currentThread().getId());
+//				new AlertDialog.Builder(HandleTestActivity.this)
+//						.setTitle("handle post")
+//						.setMessage("post onEvent")
+//						.setPositiveButton("ok", null)
+//						.setNegativeButton("NO", null)
+//						.show();
+//				Log.d("handlerpostonevent", "run: pid "+Thread.currentThread().getId());
+//			}
+//		});
+
+		Message msg=mHandler.obtainMessage();
+		Bundle bundle=new Bundle();
+		bundle.putParcelable("bitmap", event.bitmap);
+		msg.setData(bundle);
+
+		//handler.post(r)
+		mHandler.sendMessage(msg);
+
+
+    }
+
+   // @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessage(ImageDownloadEvent event){
+
+        Log.e("onMessage", "onEvent: "+event.uri);
+        Log.d("onMessage", "run: pid"+Thread.currentThread().getId());
+
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("onMessage run ui thread", "run: pid "+Thread.currentThread().getId());
+            }
+        });
+
+
+
+    }
+   // @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onEventMainThread(ImageDownloadEvent event){
+
+        Log.e("onEventMainThread", "onEvent: "+event.uri);
+        Log.d("onEventMainThread", "run: pid "+Thread.currentThread().getId());
+
+
+    }
+
+   // @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onEventXg(ImageDownloadEvent event){
+//
+//        Log.e("onEventXg", "onEvent: "+event.uri);
+//        Log.d("onEventXg", "run: pid "+Thread.currentThread().getId());
+//
+//
+//    }
 }
