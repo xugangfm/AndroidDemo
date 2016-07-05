@@ -29,6 +29,11 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import de.greenrobot.event.EventBus;
 
@@ -38,6 +43,9 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 		// TODO Auto-generated constructor stub
 	}
 
+    private ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(0, 1, 60L, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
+
+    private ExecutorService executorService = Executors.newCachedThreadPool();
     private Handler mHandler;
 
 	private Handler handler=new Handler(){
@@ -113,6 +121,8 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 
 		arrayList.add("eventbus");
 
+		arrayList.add("线程池ThreadPoolExecutor");
+
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, arrayList);
 
@@ -141,9 +151,7 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 					downloadByRunnable();
 				}
 
-                if(index == 3){
-                    downloadByThread_eventbus();
-                }
+
 				
 				if (index==2) {
                     Log.d("click post", "run:pid "+Thread.currentThread().getId());
@@ -164,6 +172,32 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 					});
 					
 				}
+
+                if(index == 3){
+                    downloadByThread_eventbus();
+                }
+
+                if(index == 4){
+                    threadPoolExecutor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            // TODO Auto-generated method stub
+                            String urlString="http://img5.hao123.com/data/1_d1be20c5f759160fc48b3395d9579edc_0";
+                            //Bitmap bitmap=getBitmapFromUrl(urlString);
+                            Bitmap bitmap=getBitmapWithHttpClient(urlString);
+                            Message msg=handler.obtainMessage();
+                            msg.what=1;
+                            Bundle bundle=new Bundle();
+                            bundle.putParcelable("bitmap", bitmap);
+                            msg.setData(bundle);
+
+                            //handler.post(r)
+                            //handler.sendMessage(msg);
+                            msg.setTarget(handler);
+                            msg.sendToTarget();
+                        }
+                    });
+                }
 				
 			}
 		});

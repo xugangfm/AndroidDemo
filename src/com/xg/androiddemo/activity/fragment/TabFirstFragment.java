@@ -94,7 +94,7 @@ public class TabFirstFragment extends Fragment {
         arrayList.add("try service activity");
         arrayList.add("post notification");
         arrayList.add("try broardcast activity");
-        arrayList.add("try handle with thread");
+        arrayList.add("try handle with thread(eventbus2.4)");
         arrayList.add("Test Tab ActionBar Activity");
         arrayList.add("Test List ActionBar Activity");
         //arrayList.add("Test unknown Activity");
