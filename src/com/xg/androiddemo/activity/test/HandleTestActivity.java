@@ -14,6 +14,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 import com.xg.androiddemo.event.ImageDownloadEvent;
 import com.xg.androiddemo.parent.BaseActivity;
 
@@ -123,6 +127,8 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 
 		arrayList.add("线程池ThreadPoolExecutor");
 
+        arrayList.add("okHttp");
+
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, arrayList);
 
@@ -197,6 +203,58 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
                             msg.sendToTarget();
                         }
                     });
+                }
+
+                if(index == 5){
+
+                    threadPoolExecutor.execute(new Runnable() {
+                        @Override
+                        public void run() {
+                            String urlString="http://img5.hao123.com/data/1_d1be20c5f759160fc48b3395d9579edc_0";
+                            try {
+                                get(urlString);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+
+
+                }
+
+                if (index == 6){
+                    String url="http://img5.hao123.com/data/1_d1be20c5f759160fc48b3395d9579edc_0";
+                    OkHttpClient client = new OkHttpClient();
+                    Request request = new Request.Builder().url(url).build();
+                    try {
+                         client.newCall(request).enqueue(new Callback() {
+                            @Override
+                            public void onFailure(Request request, IOException e) {
+
+                            }
+
+                            @Override
+                            public void onResponse(Response response) throws IOException {
+
+                                byte[] b=    response.body().bytes();
+
+                                Bitmap bitmap = BitmapFactory.decodeByteArray(b,0,b.length);
+
+                                ImageDownloadEvent ev= new ImageDownloadEvent();
+                                ev.uri = "http://img5.hao123.com/data/1_d1be20c5f759160fc48b3395d9579edc_0";
+                                ev.bitmap = bitmap;
+                                EventBus.getDefault().post(ev);
+                            }
+                        });
+
+
+
+                    }catch(Exception e) {
+
+                    }finally{
+
+                    }
                 }
 				
 			}
@@ -389,6 +447,35 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 
         Log.e("onEventMainThread", "onEvent: "+event.uri);
         Log.d("onEventMainThread", "run: pid "+Thread.currentThread().getId());
+
+
+    }
+
+    public void get(String url)throws Exception{
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(url).build();
+        try {
+            Response response = client.newCall(request).execute();
+            if (response.isSuccessful()) {
+
+                byte[] b=    response.body().bytes();
+
+                Bitmap bitmap = BitmapFactory.decodeByteArray(b,0,b.length);
+
+                ImageDownloadEvent ev= new ImageDownloadEvent();
+                ev.uri = url;
+                ev.bitmap = bitmap;
+                EventBus.getDefault().post(ev);
+            }
+
+
+        }catch(IOException e) {
+            throw new Exception(e);
+        }finally{
+
+        }
+
 
 
     }

@@ -70,6 +70,7 @@ android {
 
 dependencies {
     //compile files('libs/GjimLib-android.jar')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:support-v4:21.0.3'
     compile 'com.android.support:appcompat-v7:19.1.0'
     compile 'de.greenrobot:eventbus:2.4.0'
