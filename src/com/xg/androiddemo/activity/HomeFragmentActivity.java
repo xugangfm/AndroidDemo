@@ -1,12 +1,17 @@
 package com.xg.androiddemo.activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -19,6 +24,7 @@ import android.widget.SimpleAdapter;
 import com.xg.androiddemo.R;
 import com.xg.androiddemo.activity.fragment.TabFirstFragment;
 import com.xg.androiddemo.activity.fragment.TabSecondFragment;
+import com.xg.androiddemo.activity.test.DBTestActivity;
 import com.xg.androiddemo.activity.test.DownloadImageActivity;
 import com.xg.androiddemo.activity.test.HandleTestActivity;
 import com.xg.androiddemo.activity.test.LayoutTestActivity;
@@ -39,6 +45,8 @@ public class HomeFragmentActivity extends BaseActivity implements TabFirstFragme
 	private FragmentManager fragmentManager;  
 	private int selected_index=0;
 	private LinearLayout contentView;
+
+	private Handler mHander = new Handler();
 	
 	public static class StaticReceiver  extends BroadcastReceiver{
 
@@ -79,7 +87,15 @@ public class HomeFragmentActivity extends BaseActivity implements TabFirstFragme
 			}
 
 			if (index==2) {
-				//postNotification();
+
+			mHander.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					postNotification();
+					Log.e("postDelayed", "run: postDelayed");
+				}
+			},50);
+
 			}
 
 			if (index==3) {
@@ -94,6 +110,9 @@ public class HomeFragmentActivity extends BaseActivity implements TabFirstFragme
 			}
 			if (index==6) {
 				pushActivity(HomeFragmentActivity.this, null, ListActionBarTestActivity.class);
+			}
+			if (index==7) {
+				pushActivity(HomeFragmentActivity.this, null, DBTestActivity.class);
 			}
 		}
 
@@ -200,8 +219,41 @@ public class HomeFragmentActivity extends BaseActivity implements TabFirstFragme
 //		contentView.addView(subActivityView,
 //				LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 	}
-	
-	
+
+	private void postNotification(){
+		NotificationManager mNotificationManager
+				= (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+		int icon = android.R.drawable.sym_action_email;
+		long when = System.currentTimeMillis();
+		Notification notification = new Notification(icon,"开会",when);
+		Intent intent = new Intent(this, HomeFragmentActivity.class);    //点击通知进入的界面
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+		//PendingIntent contentIntent = PendingIntent.getService(this, 0, null, 0);
+		notification.setLatestEventInfo(this, "开会通知", "今天下午去会议室开会", contentIntent);
+		mNotificationManager.notify(0, notification);//发送通知
+	}
+
+	private void postNotification2(){
+
+
+		Intent intent = new Intent(this, HomeFragmentActivity.class);    //点击通知进入的界面
+		PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+		//PendingIntent contentIntent = PendingIntent.getService(this, 0, null, 0);
+		NotificationManager mNotificationManager
+				= (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+		int icon = android.R.drawable.sym_action_email;
+		long when = System.currentTimeMillis();
+		Notification notification = new NotificationCompat.Builder(getApplicationContext()).setTicker("ticker").setContentTitle("title").setContentText("content-xugang").setSmallIcon(android.R.drawable.sym_action_email).setAutoCancel(true).setContentIntent(contentIntent).build();
+
+
+
+
+		// notification.setLatestEventInfo(this, "开会通知", "今天下午去会议室开会", contentIntent);
+		mNotificationManager.notify(0, notification);//发送通知
+	}
+
 
 
 }

@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xg.androiddemo"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -11,20 +11,19 @@
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:allowBackup="true"
         android:name=".Global"
+        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activity.HomeFragmentActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -63,7 +62,7 @@
         <activity android:name=".activity.test2.ScrollViewActivity" />
         <activity android:name=".activity.test2.ListViewHFActivity" />
         <!-- 服务 -->
-        <service android:name=".service.CustomService"  >
+        <service android:name=".service.CustomService">
             <intent-filter>
                 <action android:name="com.xg.SERVICE_DEMO" />
 
@@ -73,14 +72,14 @@
 
         <!-- 广播 -->
 
-        <receiver android:name=".receiver.CustomReceiver" >
+        <receiver android:name=".receiver.CustomReceiver">
             <intent-filter>
                 <action android:name="com.xg.receiver_demo" />
 
                 <category android:name="android.intent.category.default" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".activity.HomeActivity$StaticReceiver" >
+        <receiver android:name=".activity.HomeActivity$StaticReceiver">
             <intent-filter>
                 <action android:name="com.xg.static_receiver_demo" />
 
@@ -91,7 +90,7 @@
         <activity
             android:name=".activity.test.TabActionbarTestActivity"
             android:label="@string/title_activity_actionbar_test"
-            android:parentActivityName=".parent.BaseActivity" >
+            android:parentActivityName=".parent.BaseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.xg.androiddemo.parent.BaseActivity" />
@@ -99,11 +98,12 @@
         <activity
             android:name=".activity.test.ListActionBarTestActivity"
             android:label="@string/title_activity_list_action_bar_test"
-            android:parentActivityName=".parent.BaseActivity" >
+            android:parentActivityName=".parent.BaseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.xg.androiddemo.parent.BaseActivity" />
         </activity>
+        <activity android:name=".activity.test.DBTestActivity"></activity>
     </application>
 
 </manifest>

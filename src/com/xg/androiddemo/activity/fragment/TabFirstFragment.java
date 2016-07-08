@@ -97,7 +97,7 @@ public class TabFirstFragment extends Fragment {
         arrayList.add("try handle with thread(eventbus2.4)");
         arrayList.add("Test Tab ActionBar Activity");
         arrayList.add("Test List ActionBar Activity");
-        //arrayList.add("Test unknown Activity");
+        arrayList.add("Test DB Activity");
 
 
 
@@ -124,6 +124,7 @@ public class TabFirstFragment extends Fragment {
 
                 if (index == 2) {
                     //postNotification();
+                    mListener.onclicked(R.id.first_act_listview,index);
                 }
 
                 if (index == 3) {
@@ -139,6 +140,9 @@ public class TabFirstFragment extends Fragment {
                 }
 
                 if (index == 6) {
+                    mListener.onclicked(R.id.first_act_listview,index);
+                }
+                if (index == 7) {
                     mListener.onclicked(R.id.first_act_listview,index);
                 }
 

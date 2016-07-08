@@ -7,18 +7,22 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
-import android.content.ServiceConnection;
-import android.content.ComponentName;
+
+import com.xg.androiddemo.activity.HomeFragmentActivity;
 
 public class CustomService extends Service {
+
+    Handler mHandler = new Handler();
 
 	public CustomService() {
 		// TODO Auto-generated constructor stub
 		
-		Log.i("CustomService", "CustomService");
+		Log.e("CustomService", "CustomService");
 	}
 
 	/* (non-Javadoc)
@@ -28,13 +32,13 @@ public class CustomService extends Service {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-		Log.i("CustomService", "onCreate");
+		Log.e("CustomService", "onCreate");
 	}
 
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
-		Log.i("CustomService", "onBind");
+		Log.e("CustomService", "onBind");
 		return new LocalBinder();
 	}
 
@@ -54,13 +58,25 @@ public class CustomService extends Service {
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
-		Log.i("CustomService", "onDestroy");
+		Log.e("CustomService", "onDestroy");
 		super.onDestroy();
 	}
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.e("onStartCommand", "onStartCommand");
+
+        this.sayHelloWorld();
+
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                postNotification2();
+            }
+        },5000);
+
 		return super.onStartCommand(intent, flags, startId);
+
 	}
 
 	/* (non-Javadoc)
@@ -69,7 +85,7 @@ public class CustomService extends Service {
 	@Override
 	public void onRebind(Intent intent) {
 		// TODO Auto-generated method stub
-		Log.i("CustomService", "onRebind");
+		Log.e("CustomService", "onRebind");
 		super.onRebind(intent);
 	}
 
@@ -104,10 +120,29 @@ public class CustomService extends Service {
 		  int icon = android.R.drawable.sym_action_email;
 		  long when = System.currentTimeMillis();
 		  Notification notification = new Notification(icon,"开会",when);
-		 
-		  PendingIntent contentIntent = PendingIntent.getService(this, 0, null, 0);
-		  notification.setLatestEventInfo(this, "开会通知", "今天下午去会议室开会", contentIntent);
+
+        Intent intent = new Intent(this, HomeFragmentActivity.class);    //点击通知进入的界面
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        notification.setLatestEventInfo(this, "开会通知", "今天下午去会议室开会", contentIntent);
 		  mNotificationManager.notify(0, notification);//发送通知
 	}
+
+    private void postNotification2(){
+        Intent intent = new Intent(this, HomeFragmentActivity.class);    //点击通知进入的界面
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+
+        NotificationManager mNotificationManager
+                = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+        int icon = android.R.drawable.sym_action_email;
+        long when = System.currentTimeMillis();
+        Notification notification = new NotificationCompat.Builder(getApplicationContext()).setTicker("ticker").setContentTitle("title").setContentText("content-xugang").setSmallIcon(android.R.drawable.sym_action_email).setAutoCancel(true).setContentIntent(contentIntent).build();
+
+
+
+
+       // notification.setLatestEventInfo(this, "开会通知", "今天下午去会议室开会", contentIntent);
+        mNotificationManager.notify(0, notification);//发送通知
+    }
 
 }
