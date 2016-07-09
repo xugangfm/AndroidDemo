@@ -28,6 +28,8 @@ public class DBTestActivity extends ActionBarActivity {
 
 
 
+        manager.query(321);
+
 
 
     }
@@ -36,8 +38,6 @@ public class DBTestActivity extends ActionBarActivity {
     protected void onStart() {
         super.onStart();
 
-        XGDBManager manager = XGDBManager.getInstance();
 
-         manager.query(321);
     }
 }

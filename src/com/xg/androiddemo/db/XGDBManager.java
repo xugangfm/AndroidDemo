@@ -48,6 +48,8 @@ public class XGDBManager {
                 cv.put(mdbHelper.COLUMN_EXTRA_INFO,userInfo.extra_info);
 
                 db.insert(mdbHelper.DB_TABLE,null,cv);
+
+               db.close();
             }
         });
 
@@ -64,26 +66,37 @@ public class XGDBManager {
 
     }
 
-    public Cursor query(int user_id){
+    public void query(int user_id){
 
 
-        SQLiteDatabase db;
+        mThreadPoolExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                SQLiteDatabase db;
 
-        db = mdbHelper.getWritableDatabase();
+                db = mdbHelper.getWritableDatabase();
 
-        Cursor c = db.rawQuery("select * from user_info where user_name =  ?", new String[]{"xugang"});
+                Cursor c = db.rawQuery("select * from user_info where user_name =  ?", new String[]{"xugang"});
 
-        while(c.moveToNext()){
-            String _id = c.getString(c.getColumnIndex(mdbHelper.COLUMN_USER_ID));
-            String name = c.getString(c.getColumnIndex(mdbHelper.COLUMN_USER_NAME));
+                while(c.moveToNext()){
+                    String _id = c.getString(c.getColumnIndex(mdbHelper.COLUMN_USER_ID));
+                    String name = c.getString(c.getColumnIndex(mdbHelper.COLUMN_USER_NAME));
 
-            Log.i(_id, name);
+                    Log.i(_id, name);
 
 
 
-        }
+                }
+                c.close();
+                db.close();
+            }
+        });
 
-        return c;
+
+
+
+
+        return ;
     }
 
 }
