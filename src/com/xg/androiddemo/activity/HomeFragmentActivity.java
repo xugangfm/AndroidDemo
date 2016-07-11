@@ -19,7 +19,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.LinearLayout;
-import android.widget.SimpleAdapter;
 
 import com.xg.androiddemo.R;
 import com.xg.androiddemo.activity.fragment.TabFirstFragment;
@@ -33,6 +32,7 @@ import com.xg.androiddemo.activity.test.ListViewDemoActivity;
 import com.xg.androiddemo.activity.test.ReceiverTestActivity;
 import com.xg.androiddemo.activity.test.ServiceTestActivity;
 import com.xg.androiddemo.activity.test.TabActionbarTestActivity;
+import com.xg.androiddemo.adapter.HomeGridViewAdapter;
 import com.xg.androiddemo.parent.BaseActivity;
 
 import java.util.ArrayList;
@@ -169,9 +169,11 @@ public class HomeFragmentActivity extends BaseActivity implements TabFirstFragme
 		}
 		
 		GridView gv = (GridView) findViewById(R.id.home_grid_view);
-		SimpleAdapter adapter = new SimpleAdapter(this, menu_data,
-				R.layout.tab_grid_item, new String[] { "menu_image", "menu_text" },
-				new int[] { R.id.tab_grid_item_iamge, R.id.tab_grid_item_text });
+//		SimpleAdapter adapter = new SimpleAdapter(this, menu_data,
+//				R.layout.tab_grid_item, new String[] { "menu_image", "menu_text" },
+//				new int[] { R.id.tab_grid_item_iamge, R.id.tab_grid_item_text });
+//		gv.setAdapter(adapter);
+		HomeGridViewAdapter adapter= new HomeGridViewAdapter(this,menu_data);
 		gv.setAdapter(adapter);
 		
 		gv.setOnItemClickListener(new OnItemClickListener() {
