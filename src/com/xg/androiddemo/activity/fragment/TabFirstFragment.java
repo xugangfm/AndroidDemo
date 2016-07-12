@@ -98,6 +98,7 @@ public class TabFirstFragment extends Fragment {
         arrayList.add("Test Tab ActionBar Activity");
         arrayList.add("Test List ActionBar Activity");
         arrayList.add("Test DB Activity");
+        arrayList.add("Test  Activity launch mode");
 
 
 
@@ -143,6 +144,9 @@ public class TabFirstFragment extends Fragment {
                     mListener.onclicked(R.id.first_act_listview,index);
                 }
                 if (index == 7) {
+                    mListener.onclicked(R.id.first_act_listview,index);
+                }
+                if (index == 8) {
                     mListener.onclicked(R.id.first_act_listview,index);
                 }
 

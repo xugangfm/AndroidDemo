@@ -112,6 +112,8 @@ public class HandleTestActivity extends BaseActivity implements Handler.Callback
 
         EventBus.getDefault().register(this);
 
+
+
         //eventBus.register(this);
 
 		ListView lv = new ListView(this);

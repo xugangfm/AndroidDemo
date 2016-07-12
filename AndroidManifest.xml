@@ -103,7 +103,32 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.xg.androiddemo.parent.BaseActivity" />
         </activity>
-        <activity android:name=".activity.test.DBTestActivity"></activity>
+        <activity android:name=".activity.test.DBTestActivity" />
+        <activity
+            android:name=".activity.launchmode.AAActivity"
+            android:label="@string/title_activity_aa"
+            android:parentActivityName="android.support.v7.app.ActionBarActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="android.support.v7.app.ActionBarActivity" />
+        </activity>
+        <activity
+            android:name=".activity.launchmode.BBActivity"
+            android:label="@string/title_activity_bb"
+            android:launchMode="singleTop"
+            android:parentActivityName=".parent.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.xg.androiddemo.parent.BaseActivity" />
+        </activity>
+        <activity
+            android:name=".activity.launchmode.CCActivity"
+            android:label="@string/title_activity_cc"
+            android:parentActivityName=".parent.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.xg.androiddemo.parent.BaseActivity" />
+        </activity>
     </application>
 
 </manifest>

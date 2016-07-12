@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import com.xg.androiddemo.R;
 import com.xg.androiddemo.activity.fragment.TabFirstFragment;
 import com.xg.androiddemo.activity.fragment.TabSecondFragment;
+import com.xg.androiddemo.activity.launchmode.AAActivity;
 import com.xg.androiddemo.activity.test.DBTestActivity;
 import com.xg.androiddemo.activity.test.DownloadImageActivity;
 import com.xg.androiddemo.activity.test.HandleTestActivity;
@@ -113,6 +114,9 @@ public class HomeFragmentActivity extends BaseActivity implements TabFirstFragme
 			}
 			if (index==7) {
 				pushActivity(HomeFragmentActivity.this, null, DBTestActivity.class);
+			}
+			if (index==8) {
+				pushActivity(HomeFragmentActivity.this, null, AAActivity.class);
 			}
 		}
 
