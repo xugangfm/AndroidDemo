@@ -129,6 +129,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.xg.androiddemo.parent.BaseActivity" />
         </activity>
+
+        <receiver
+            android:name=".receiver.HeartbeatReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
     </application>
 
 </manifest>

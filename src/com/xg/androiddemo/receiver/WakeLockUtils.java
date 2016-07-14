@@ -5,20 +5,17 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
-import android.util.Log;
-
-import io.rong.common.RLog;
 
 /**
  * Created by DragonJ on 14-6-23.
  */
-class WakeLockUtils {
+public class WakeLockUtils {
 
-    private static final int HEARTBEAT_SPAN = 1000 * 60 * 3; // 10 seconds
+    private static final int HEARTBEAT_SPAN = 1000 * 1; // 10 seconds
 
-    static void startNextHeartbeat(Context context) {
+    public static void startNextHeartbeat(Context context) {
 
-        RLog.d(context,  "startNextHeartbeat" , context.getPackageName());
+        RLog.i(context,  "startNextHeartbeat" , context.getPackageName());
 
         Intent heartbeatIntent = new Intent(context, HeartbeatReceiver.class);
         heartbeatIntent.setPackage(context.getPackageName());
@@ -32,8 +29,8 @@ class WakeLockUtils {
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, time, intent);
     }
 
-    static void cancelHeartbeat(Context context) {
-        RLog.d(context,  "cancelHeartbeat" , context.getPackageName());
+    public static void cancelHeartbeat(Context context) {
+        RLog.i(context,  "cancelHeartbeat" , context.getPackageName());
 
         Intent heartbeatIntent = new Intent(context, HeartbeatReceiver.class);
         heartbeatIntent.setPackage(context.getPackageName());
