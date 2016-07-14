@@ -1,4 +1,4 @@
-package com.xg.androiddemo.receiver;
+package com.xg.androiddemo.Utils;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -6,10 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 
+import com.xg.androiddemo.receiver.HeartbeatReceiver;
+
 /**
  * Created by DragonJ on 14-6-23.
  */
-public class WakeLockUtils {
+public class HeartbeatUtils {
 
     private static final int HEARTBEAT_SPAN = 1000 * 1; // 10 seconds
 

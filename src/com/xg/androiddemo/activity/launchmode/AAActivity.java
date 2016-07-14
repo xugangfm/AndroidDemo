@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.xg.androiddemo.R;
-import com.xg.androiddemo.receiver.WakeLockUtils;
+import com.xg.androiddemo.Utils.HeartbeatUtils;
 
 public class AAActivity extends FragmentActivity {
     
@@ -17,7 +17,7 @@ public class AAActivity extends FragmentActivity {
     @Override
     protected void onDestroy() {
         Log.i(TAG+"task id:"+getTaskId(), "onDestroy: "+this.toString());
-        WakeLockUtils.cancelHeartbeat(this);
+        HeartbeatUtils.cancelHeartbeat(this);
         super.onDestroy();
     }
 
@@ -32,7 +32,7 @@ public class AAActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aa);
 
-        WakeLockUtils.startNextHeartbeat(this);
+        HeartbeatUtils.startNextHeartbeat(this);
 
 
        // getSupportActionBar().setDisplayHomeAsUpEnabled(true);

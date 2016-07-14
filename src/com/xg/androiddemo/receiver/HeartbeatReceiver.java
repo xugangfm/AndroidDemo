@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.xg.androiddemo.Utils.HeartbeatUtils;
+
 public class HeartbeatReceiver extends BroadcastReceiver {
     public HeartbeatReceiver() {
     }
@@ -15,6 +17,6 @@ public class HeartbeatReceiver extends BroadcastReceiver {
         // an Intent broadcast.
         Log.e("HeartbeatReceiver", "onReceive: ");
 
-        WakeLockUtils.startNextHeartbeat(context);
+        HeartbeatUtils.startNextHeartbeat(context);
     }
 }

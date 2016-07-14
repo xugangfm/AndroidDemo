@@ -1,4 +1,4 @@
-package com.xg.androiddemo.receiver;
+package com.xg.androiddemo.Utils;
 
 import android.util.Log;
 
