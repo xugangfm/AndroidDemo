@@ -1,14 +1,10 @@
 package com.xg.androiddemo.activity.test;
 
 import com.xg.androiddemo.R;
-import com.xg.androiddemo.R.layout;
-import com.xg.androiddemo.R.menu;
 import com.xg.androiddemo.activity.HomeActivity;
 import com.xg.androiddemo.parent.BaseActivity;
 
 import android.os.Bundle;
-import android.R.integer;
-import android.app.Activity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;

@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.xg.androiddemo.R;
-import com.xg.androiddemo.Utils.HeartbeatUtils;
+import com.xg.androiddemo.utils.HeartbeatUtils;
 
 public class AAActivity extends FragmentActivity {
     

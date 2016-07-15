@@ -1,7 +1,6 @@
 package com.xg.androiddemo.activity.test2;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.xg.androiddemo.R;

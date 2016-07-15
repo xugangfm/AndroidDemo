@@ -1,32 +1,24 @@
 package com.xg.androiddemo.activity;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import com.xg.androiddemo.R;
-
-
-
-
-
-
-
-import android.os.Bundle;
-
 import android.app.ActivityGroup;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.SimpleAdapter;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.xg.androiddemo.R;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class HomeActivity extends ActivityGroup {
 

@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.xg.androiddemo.parent.BaseActivity;
-import com.xg.androiddemo.receiver.CustomReceiver;
 
 public class ReceiverTestActivity extends BaseActivity {
 

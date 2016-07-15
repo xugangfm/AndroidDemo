@@ -1,6 +1,5 @@
 package com.xg.androiddemo.activity.test;
 
-import android.R.integer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;

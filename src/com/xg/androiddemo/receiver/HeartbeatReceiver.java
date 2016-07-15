@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
-import com.xg.androiddemo.Utils.HeartbeatUtils;
+import com.xg.androiddemo.utils.HeartbeatUtils;
 
 public class HeartbeatReceiver extends BroadcastReceiver {
     public HeartbeatReceiver() {

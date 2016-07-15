@@ -1,4 +1,4 @@
-package com.xg.androiddemo.Utils;
+package com.xg.androiddemo.utils;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
