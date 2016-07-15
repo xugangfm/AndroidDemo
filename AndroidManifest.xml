@@ -143,7 +143,12 @@
         <service
             android:name=".service.RemoteService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true"
+            android:process=":ipc"/>
+
+        <activity
+            android:name=".activity.test.IPCTestActivity"
+            android:label="@string/title_activity_ipctest"></activity>
     </application>
 
 </manifest>

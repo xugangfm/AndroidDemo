@@ -27,6 +27,7 @@ import com.xg.androiddemo.activity.launchmode.AAActivity;
 import com.xg.androiddemo.activity.test.DBTestActivity;
 import com.xg.androiddemo.activity.test.DownloadImageActivity;
 import com.xg.androiddemo.activity.test.HandleTestActivity;
+import com.xg.androiddemo.activity.test.IPCTestActivity;
 import com.xg.androiddemo.activity.test.LayoutTestActivity;
 import com.xg.androiddemo.activity.test.ListActionBarTestActivity;
 import com.xg.androiddemo.activity.test.ListViewDemoActivity;
@@ -117,6 +118,9 @@ public class HomeFragmentActivity extends BaseActivity implements TabFirstFragme
 			}
 			if (index==8) {
 				pushActivity(HomeFragmentActivity.this, null, AAActivity.class);
+			}
+			if (index==9) {
+				pushActivity(HomeFragmentActivity.this, null, IPCTestActivity.class);
 			}
 		}
 

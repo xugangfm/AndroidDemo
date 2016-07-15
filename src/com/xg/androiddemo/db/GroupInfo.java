@@ -5,9 +5,9 @@ import android.os.Parcelable;
 import android.util.Log;
 
 /**
- * Created by xugang on 16/7/8.
+ * Created by xugang on 16/7/15.
  */
-public class UserInfo implements Parcelable {
+public class GroupInfo  implements Parcelable {
 
     String TAG = this.getClass().getSimpleName();
 
@@ -53,25 +53,25 @@ public class UserInfo implements Parcelable {
         Log.i(TAG, "writeToParcel: 序列化");
     }
 
-    public UserInfo(){
+    public GroupInfo(){
 
     }
-    public UserInfo(Parcel source){
+    public GroupInfo(Parcel source){
         user_id = source.readString();
         user_name = source.readString();
         extra_info =source.readString();
         Log.i(TAG, "UserInfo: 反序列化");
     }
 
-    public static final Parcelable.Creator<UserInfo> CREATOR = new Creator<UserInfo>() {
+    public static final Parcelable.Creator<GroupInfo> CREATOR = new Creator<GroupInfo>() {
         @Override
-        public UserInfo createFromParcel(Parcel source) {
-            return new UserInfo(source);
+        public GroupInfo createFromParcel(Parcel source) {
+            return new GroupInfo(source);
         }
 
         @Override
-        public UserInfo[] newArray(int size) {
-            return new UserInfo[size];
+        public GroupInfo[] newArray(int size) {
+            return new GroupInfo[size];
         }
     };
 }

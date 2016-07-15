@@ -99,6 +99,7 @@ public class TabFirstFragment extends Fragment {
         arrayList.add("Test List ActionBar Activity");
         arrayList.add("Test DB Activity");
         arrayList.add("Test  Activity launch mode");
+        arrayList.add("Test  ipc service");
 
 
 
@@ -116,39 +117,43 @@ public class TabFirstFragment extends Fragment {
 
                 int index = arg2;
                 Log.v("list demo index", index + "");
-                if (index == 0) {
-                   mListener.onclicked(R.id.first_act_listview,index);
-                }
-                if (index == 1) {
-                    mListener.onclicked(R.id.first_act_listview,index);
-                }
-
-                if (index == 2) {
-                    //postNotification();
-                    mListener.onclicked(R.id.first_act_listview,index);
-                }
-
-                if (index == 3) {
-                    mListener.onclicked(R.id.first_act_listview,index);
-                }
-
-                if (index == 4) {
-                    mListener.onclicked(R.id.first_act_listview,index);
-                }
-
-                if (index == 5) {
-                    mListener.onclicked(R.id.first_act_listview,index);
-                }
-
-                if (index == 6) {
-                    mListener.onclicked(R.id.first_act_listview,index);
-                }
-                if (index == 7) {
-                    mListener.onclicked(R.id.first_act_listview,index);
-                }
-                if (index == 8) {
-                    mListener.onclicked(R.id.first_act_listview,index);
-                }
+                mListener.onclicked(R.id.first_act_listview,index);
+//                if (index == 0) {
+//                   mListener.onclicked(R.id.first_act_listview,index);
+//                }
+//                if (index == 1) {
+//                    mListener.onclicked(R.id.first_act_listview,index);
+//                }
+//
+//                if (index == 2) {
+//                    //postNotification();
+//                    mListener.onclicked(R.id.first_act_listview,index);
+//                }
+//
+//                if (index == 3) {
+//                    mListener.onclicked(R.id.first_act_listview,index);
+//                }
+//
+//                if (index == 4) {
+//                    mListener.onclicked(R.id.first_act_listview,index);
+//                }
+//
+//                if (index == 5) {
+//                    mListener.onclicked(R.id.first_act_listview,index);
+//                }
+//
+//                if (index == 6) {
+//                    mListener.onclicked(R.id.first_act_listview,index);
+//                }
+//                if (index == 7) {
+//                    mListener.onclicked(R.id.first_act_listview,index);
+//                }
+//                if (index == 8) {
+//                    mListener.onclicked(R.id.first_act_listview,index);
+//                }
+//                if (index == 9) {
+//                    mListener.onclicked(R.id.first_act_listview,index);
+//                }
 
 
             }

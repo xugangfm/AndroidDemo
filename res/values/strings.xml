@@ -16,5 +16,6 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_bb">BBActivity</string>
     <string name="title_activity_cc">CCActivity</string>
+    <string name="title_activity_ipctest">IPCTestActivity</string>
 
 </resources>
