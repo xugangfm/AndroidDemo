@@ -45,6 +45,7 @@ public class IPCTestActivity extends ActionBarActivity {
             @Override
             public void onServiceDisconnected(ComponentName name) {
                 Log.i(TAG, "onServiceDisconnected: ");
+                iHandler = null;
             }
         };
 
@@ -94,18 +95,36 @@ public class IPCTestActivity extends ActionBarActivity {
             }
         });
 
+
+        Button btn2 = new Button(this);
+        btn2.setText("unbind remote service");
+        btn2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                Intent it = new Intent(IPCTestActivity.this,RemoteService.class);
+               // bindService(it,remoteSC, Context.BIND_AUTO_CREATE);
+                unbindService(remoteSC);
+            }
+        });
+
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
 
         layout.addView(btn);
       layout.addView(btn1);
-//        layout.addView(btn3);
+      layout.addView(btn2);
 //        layout.addView(btn4);
 //        layout.addView(btn5);
         setContentView(layout);
 
     }
 
-
-
+    @Override
+    protected void onDestroy() {
+//        Intent it = new Intent(IPCTestActivity.this,RemoteService.class);
+        unbindService(remoteSC);
+        super.onDestroy();
+    }
 }
