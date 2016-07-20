@@ -44,6 +44,7 @@ public class ReceiverTestActivity extends BaseActivity {
 				Intent it = new Intent("com.xg.receiver_demo");
 				sendBroadcast(it);
 				Log.i("ReceiverTestActivity", "finish send");
+				Log.i("setOnClickListener", "ReceiverTestActivity, pid="+android.os.Process.myPid());
 			}
 		});
 
@@ -72,6 +73,7 @@ public class ReceiverTestActivity extends BaseActivity {
 				Intent it = new Intent("com.xg.static_receiver_demo");
 				sendBroadcast(it);
 				Log.i("ReceiverTestActivity", "finish send local 广播");
+
 			}
 		});
 		

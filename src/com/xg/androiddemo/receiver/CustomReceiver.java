@@ -19,7 +19,7 @@ public class CustomReceiver extends BroadcastReceiver {
 		String name=intent.getAction();
 		Log.i("local receiver", "用静态注册的广播"+name);
 		Log.i("context", context.toString());
-		 
+		Log.i("setOnClickListener onReceive", "ReceiverTestActivity, pid="+android.os.Process.myPid());
 	}
 
 }
