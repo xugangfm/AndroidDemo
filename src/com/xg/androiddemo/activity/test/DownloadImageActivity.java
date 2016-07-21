@@ -2,6 +2,8 @@ package com.xg.androiddemo.activity.test;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -14,15 +16,48 @@ import com.xg.androiddemo.task.ImageDownloadTask;
 import com.xg.androiddemo.task.TaskProcessInvoker;
 
 
-public class DownloadImageActivity extends BaseActivity implements TaskProcessInvoker{
+public class DownloadImageActivity extends BaseActivity implements TaskProcessInvoker,View.OnClickListener,View.OnLongClickListener,View.OnTouchListener {
 
+	String TAG = "ImageView action";
 	private ImageView imageView;
 	private TextView urltv;
+
+	@Override
+	public void onClick(View v) {
+		Log.i(TAG, "onClick: ");
+	}
+
+	@Override
+	public boolean onLongClick(View v) {
+		Log.i(TAG, "onLongClick: ");
+		return false;
+	}
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event) {
+
+		if (MotionEvent.ACTION_DOWN == event.getAction()){
+			Log.i(TAG, "ACTION_DOWN: ");
+		}else if(MotionEvent.ACTION_UP == event.getAction()){
+			Log.i(TAG, "ACTION_UP: ");
+		}else if(MotionEvent.ACTION_MOVE == event.getAction()){
+
+		}
+
+
+
+
+
+
+
+		return false;
+	}
+
 	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.xg.androiddemo.parent.BaseActivity#onCreate(android.os.Bundle)
-	 */
+         * (non-Javadoc)
+         *
+         * @see com.xg.androiddemo.parent.BaseActivity#onCreate(android.os.Bundle)
+         */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -50,6 +85,10 @@ public class DownloadImageActivity extends BaseActivity implements TaskProcessIn
 		
 		
 		imageView = new ImageView(this);
+
+		imageView.setOnClickListener(this);
+		imageView.setOnTouchListener(this);
+		imageView.setOnLongClickListener(this);
 		
 	
 		LinearLayout layout = new LinearLayout(this);
