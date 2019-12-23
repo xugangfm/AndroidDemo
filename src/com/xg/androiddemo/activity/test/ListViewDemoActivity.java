@@ -5,15 +5,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
-
-import java.util.*;
-
+import android.widget.ListView;
 
 import com.xg.androiddemo.adapter.CustomListviewAdapter;
 import com.xg.androiddemo.event.SubMenuOnClickListener;
 import com.xg.androiddemo.parent.BaseActivity;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 
 
@@ -86,6 +87,11 @@ public class ListViewDemoActivity extends BaseActivity implements SubMenuOnClick
 				 adapter.notifyDataSetChanged();
 				 
 				  setTitle("demo"+index+"4231423");
+
+
+				task();
+
+
 	            }
 		
 		}
@@ -93,7 +99,32 @@ public class ListViewDemoActivity extends BaseActivity implements SubMenuOnClick
 		
 		
 	}
-	
+	private void task() {
+		new Thread(new TaskRun()).start();
+	}
+
+
+
+	class TaskRun implements Runnable
+	{
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+
+			//Thread.currentThread().setUncaughtExceptionHandler(new UnCaughtExecptionImp());
+			int f=Integer.parseInt("8");
+			Log.i("tag", "f="+f);
+			int g=Integer.parseInt("yy");
+			Log.i("tag", "g="+g);
+			int h=Integer.parseInt("10");
+			Log.i("tag", "h="+h);
+
+		}
+
+	}
+
+
 	private List<HashMap<String,Object>> createDataList()
 	{
 		List<HashMap<String,Object>> array=new ArrayList<HashMap<String,Object>>();

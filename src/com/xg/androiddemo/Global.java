@@ -10,11 +10,32 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
-public class Global extends Application  implements Application.ActivityLifecycleCallbacks{
+public class Global extends Application  implements Application.ActivityLifecycleCallbacks,Thread.UncaughtExceptionHandler{
+
 
     static int count = 0;
     public  static Context appContext;
     protected String TAG = getClass().getSimpleName();
+
+
+    private void registerHandler() {
+//        Thread.UncaughtExceptionHandler handler =Thread.getDefaultUncaughtExceptionHandler();
+//        if(handler == this){
+//            return;
+//        }
+Thread.setDefaultUncaughtExceptionHandler(this);
+    }
+
+    @Override
+    public void uncaughtException(Thread thread, Throwable ex) {
+
+        // TODO Auto-generated method stub
+        Log.i("---crash---", "get crash log");
+        Log.e("tag", "error thread id is:"+thread.getId());
+        Log.e("tag", "Exception:"+"Name="+ex.getClass().getName()+",Message="+ex.getMessage());
+
+    }
+
 
     @Override
     public void onCreate() {
@@ -43,6 +64,8 @@ public class Global extends Application  implements Application.ActivityLifecycl
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
+
+        registerHandler();
 
 
     }
